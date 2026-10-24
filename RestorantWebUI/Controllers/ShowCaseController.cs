@@ -41,7 +41,7 @@ namespace Restorant.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createMessageDto);
             var content = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44301/api/Message/AddMessage", content);
+            var responseMessage = await client.PostAsync("https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/Message/AddMessage", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "ShowCase");

@@ -9,12 +9,24 @@ using System.Threading.Tasks;
 
 namespace SignalR.DataAccessLayer.Concrete
 {
-    public class RestorantDbContext : IdentityDbContext<AppUser,AppRole,int>
+    public class RestorantDbContext : IdentityDbContext<AppUser, AppRole, int>
     {
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=berkay; initial catalog=Rastorant; integrated Security=True; TrustServerCertificate=True;");
+        //}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=berkay; initial catalog=Rastorant; integrated Security=True; TrustServerCertificate=True;");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=tcp:platefulldb.database.windows.net,1433;Initial Catalog=PlateFullDb;Persist Security Info=False;User ID=platefullsqladmin;Password=Berkay1500?;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;");
+            }
         }
+
+        public RestorantDbContext() { }
+
+        public RestorantDbContext(DbContextOptions<RestorantDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

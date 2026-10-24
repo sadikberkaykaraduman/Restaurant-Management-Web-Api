@@ -20,7 +20,7 @@ namespace Restorant.WebUI.Controllers
         {
             TempData["id"] = id;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44301/api/Basket/GetListWithProductByMenuTableId/{id}");
+            var responseMessage = await client.GetAsync($"https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/Basket/GetListWithProductByMenuTableId/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var  jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -34,7 +34,7 @@ namespace Restorant.WebUI.Controllers
         {
             id = int.Parse(TempData["id"].ToString());
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44301/api/Basket/DeleteBasket/{id}");
+            var responseMessage = await client.DeleteAsync($"https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/Basket/DeleteBasket/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

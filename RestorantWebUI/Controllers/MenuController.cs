@@ -21,7 +21,7 @@ namespace Restorant.WebUI.Controllers
         {
             ViewBag.v = id;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44301/api/Product/GetProductWithCategory");
+            var responseMessage = await client.GetAsync("https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/Product/GetProductWithCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -48,10 +48,10 @@ namespace Restorant.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBasketDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44301/api/Basket/AddBasket", stringContent);
+            var responseMessage = await client.PostAsync("https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/Basket/AddBasket", stringContent);
 
             var client2 = _httpClientFactory.CreateClient();
-            await client2.GetAsync($"https://localhost:44301/api/MenuTable/ChangeMenuTableStatusToTrue/{id}");
+            await client2.GetAsync($"https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/MenuTable/ChangeMenuTableStatusToTrue/{id}");
 
             if (responseMessage.IsSuccessStatusCode)
             {

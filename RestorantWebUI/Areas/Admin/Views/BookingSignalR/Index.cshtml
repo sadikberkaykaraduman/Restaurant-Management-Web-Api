@@ -18,7 +18,7 @@
 
 			$(document).ready(() => {
 
-				var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44301/SignalRHub").build();
+				var connection = new signalR.HubConnectionBuilder().withUrl("https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/SignalRHub").build();
 				$("#connstatus").text(connection.state);
 				connection.start().then(() => {
 					$("#connstatus").text(connection.state);

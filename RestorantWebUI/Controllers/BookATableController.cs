@@ -20,7 +20,7 @@ namespace Restorant.WebUI.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("https://localhost:44301/api/Contact/GetAllContacts");
+            HttpResponseMessage response = await client.GetAsync("https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/Contact/GetAllContacts");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             JArray item = JArray.Parse(responseBody);
@@ -33,7 +33,7 @@ namespace Restorant.WebUI.Controllers
         public async Task<IActionResult> Index(CreateBookingDto createBookingDto)
         {
             HttpClient client2 = new HttpClient();
-            HttpResponseMessage response = await client2.GetAsync("https://localhost:44301/api/Contact/GetAllContacts");
+            HttpResponseMessage response = await client2.GetAsync("https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/Contact/GetAllContacts");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             JArray item = JArray.Parse(responseBody);
@@ -43,7 +43,7 @@ namespace Restorant.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBookingDto);
             var content = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44301/api/Booking/AddBooking", content);
+            var responseMessage = await client.PostAsync("https://signalrapiparanova-cjg4ayb8fpdyfcau.germanywestcentral-01.azurewebsites.net/api/Booking/AddBooking", content);
 
             if (responseMessage.IsSuccessStatusCode)
             {
